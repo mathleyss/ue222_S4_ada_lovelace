@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Résultats de la recherche{% endblock %}
+{% block title %}Search results{% endblock %}
 
 {% block body %}
-    <h1>Résultats de la recherche</h1>
+{% include 'article/search.html.twig' %}
+    <h1>Search results for "{{ query }}"</h1>
 
     {% if articles is not empty %}
         <table class="table">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Contenu</th>
-                    <th>Actions</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Content</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,14 +25,16 @@
                         <td>{{ article.category.name }}</td>
                         <td>{{ article.content }}</td>
                         <td>
-                            <a href="{{ path('article_show', {'id': article.id}) }}">Voir</a>
-                            <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                            <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                            <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     {% else %}
-        <p>Aucun article trouvé pour la recherche "{{ query }}".</p>
+        <p>No articles found for the search "{{ query }}".</p>
     {% endif %}
+
+    <a href="{{ path('article_index') }}">Back to list</a>
 {% endblock %}

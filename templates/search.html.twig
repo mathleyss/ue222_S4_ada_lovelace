@@ -1,7 +1,0 @@
-{# Création de la barre de recherche.
-    Le but est de permettre à l'utilisateur de chercher les articles dans la base
-    de données selon le titre. #}
-<form action="{{ path('article_search') }}" method="get">
-    <input type="text" name="query" placeholder="Tapez le titre de l'article..." required>
-    <button type="submit">Rechercher</button>
-</form>
