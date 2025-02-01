@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Blog;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -43,6 +44,12 @@ class AppFixtures extends Fixture
         $article->setCategory($categorie);
         $manager->persist($article);
 
+        $blog = new Blog();
+        $blog->setTitle("Mon blog");
+        $blog->setContent("Morbi viverra facilisis aliquet. Phasellus suscipit arcu id felis tempor, in fringilla turpis dictum. Fusce porta finibus diam, vitae lacinia nibh finibus id. Donec facilisis nisl quis egestas sollicitudin. Aenean quis nulla est. Aliquam volutpat dolor eget ultricies maximus. Maecenas felis turpis, lacinia et purus in, viverra sagittis ex. Ut laoreet est sit amet ligula auctor, in venenatis magna interdum. Maecenas suscipit accumsan libero, auctor ullamcorper lectus porta semper.");
+        $blog->setCategory($categorie);
+        $manager->persist($article);
+
         $categorie = new Category();
         $categorie->setName("Framework");
         $manager->persist($categorie);
@@ -52,7 +59,6 @@ class AppFixtures extends Fixture
         $article->setContent("Symfony est un framework PHP open-source utilisé pour développer des applications web. Créé par SensioLabs, il est basé sur le modèle MVC (Modèle-Vue-Contrôleur) et offre une structure robuste et flexible pour construire des applications web évolutives et maintenables. Symfony est connu pour sa modularité, permettant aux développeurs d'utiliser uniquement les composants nécessaires à leur projet. Il est également apprécié pour sa documentation complète, sa communauté active et ses bonnes pratiques de développement. Symfony est utilisé par de nombreuses entreprises et projets open-source pour créer des applications web performantes et sécurisées.");
         $article->setCategory($categorie);
         $manager->persist($article);
-
 
         $manager->flush();
     }
