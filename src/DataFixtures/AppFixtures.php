@@ -45,10 +45,12 @@ class AppFixtures extends Fixture
         $manager->persist($article);
 
         $blog = new Blog();
-        $blog->setTitle("Mon blog");
-        $blog->setContent("Morbi viverra facilisis aliquet. Phasellus suscipit arcu id felis tempor, in fringilla turpis dictum. Fusce porta finibus diam, vitae lacinia nibh finibus id. Donec facilisis nisl quis egestas sollicitudin. Aenean quis nulla est. Aliquam volutpat dolor eget ultricies maximus. Maecenas felis turpis, lacinia et purus in, viverra sagittis ex. Ut laoreet est sit amet ligula auctor, in venenatis magna interdum. Maecenas suscipit accumsan libero, auctor ullamcorper lectus porta semper.");
-        $blog->setCategory($categorie);
-        $manager->persist($article);
+        $blog->setTitre("Mon blog");
+        $blog->setPrenom("Ada");
+        $blog->setNom("Lovelace");
+        $blog->setDate(new \DateTime());
+        $blog->setTexte("Morbi viverra facilisis aliquet. Phasellus suscipit arcu id felis tempor, in fringilla turpis dictum. Fusce porta finibus diam, vitae lacinia nibh finibus id. Donec facilisis nisl quis egestas sollicitudin. Aenean quis nulla est. Aliquam volutpat dolor eget ultricies maximus. Maecenas felis turpis, lacinia et purus in, viverra sagittis ex. Ut laoreet est sit amet ligula auctor, in venenatis magna interdum. Maecenas suscipit accumsan libero, auctor ullamcorper lectus porta semper.");
+        $manager->persist($blog);
 
         $categorie = new Category();
         $categorie->setName("Framework");
