@@ -78,4 +78,19 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /*
+     * Voici la route qui permet de gérer la recherche d'article par titre.
+     * Elle est accessible via l'URL /search?query=mon-titre
+     */
+    #[Route('/search', name: 'article_search', methods: ['GET'])]
+    public function search(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $query = $request->query->get('query');
+        $articles = $articleRepository->findByTitle($query);
+
+        return $this->render('article/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
 }
