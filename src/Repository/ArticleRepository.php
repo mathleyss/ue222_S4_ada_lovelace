@@ -47,4 +47,22 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /*
+     * Méthode de recherche par titre
+     * Inspiré de l'exemple en commentaire donné ci-dessus.
+     */
+    public function rechercheTitre(string $title): array
+    {
+        if (empty($title)) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('a')
+            ->andWhere('LOWER(a.title) LIKE :title')
+            ->setParameter('title', '%' . mb_strtolower($title) . '%')
+            ->orderBy('a.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+}
 }
