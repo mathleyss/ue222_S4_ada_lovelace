@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -42,9 +43,17 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    // <\d+> force {id} à être un nombre entier
+    // Cela a permis de regler les erreurs lorsque on rechechait un article son titre
+    #[Route('/{id}<\d+>', name: 'article_show', methods: ['GET'])]
+    public function show(int $id, ArticleRepository $articleRepository): Response
     {
+        $article = $articleRepository->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException("L'article avec l'ID $id n'existe pas.");
+        }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
@@ -86,11 +95,18 @@ class ArticleController extends AbstractController
     #[Route('/search', name: 'article_search', methods: ['GET'])]
     public function search(Request $request, ArticleRepository $articleRepository): Response
     {
-        $query = $request->query->get('query');
-        $articles = $articleRepository->findByTitle($query);
+        $query = trim($request->query->get('query', ''));
 
-        return $this->render('article/index.html.twig', [
+        // Si l'utilisateur n'a rien indiqué dans la barre de rechercge, redirection vers l'index des articles
+        if (empty($query)) {
+            return $this->redirectToRoute('article_index');
+        }
+
+        $articles = $articleRepository->rechercheTitre($query);
+
+        return $this->render('article/results.html.twig', [
             'articles' => $articles,
+            'query' => $query,
         ]);
     }
 }
