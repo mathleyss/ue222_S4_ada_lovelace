@@ -1,0 +1,10 @@
+{# Création de la barre de recherche.
+    Le but est de permettre à l'utilisateur de chercher les articles dans la base
+    de données selon le titre. #}
+<div class="formSearch">
+    <h3>Search for articles by title</h3>
+    <form action="{{ path('article_search') }}" method="get">
+        <input type="text" name="query" placeholder="Type here ..." required>
+        <button type="submit">Search</button>
+    </form>
+</div>
