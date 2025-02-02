@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog index{% endblock %}
+{% block title %}Blog{% endblock %}
 
 {% block body %}
-    <h1>Blog index</h1>
+    <h1>Blog</h1>
 
     <table class="table">
         <thead>
@@ -11,10 +11,10 @@
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Texte</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>Nom</th>
                 <th>Date</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,19 +25,19 @@
                 <td>{{ blog.texte }}</td>
                 <td>{{ blog.prenom }}</td>
                 <td>{{ blog.nom }}</td>
-                <td>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</td>
+                <td>{{ blog.date ? blog.date|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_blog_show', {'id': blog.id}) }}">show</a>
-                    <a href="{{ path('app_blog_edit', {'id': blog.id}) }}">edit</a>
+                    <a href="{{ path('app_blog_show', {'id': blog.id}) }}" class="action-link">Voir</a>
+                    <a href="{{ path('app_blog_edit', {'id': blog.id}) }}" class="action-link">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas de blog trouvé.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_blog_new') }}">Create new</a>
+    <a href="{{ path('app_blog_new') }}" class="create-new-link">Créer un post de blog</a>
 {% endblock %}

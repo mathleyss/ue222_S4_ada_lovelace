@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Index des articles{% endblock %}
 
 {% block body %}
 {% include 'article/search.html.twig' %}
-    <h1>Article index</h1>
+    <h1>Index des articles</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th class="col-num">Id</th>
+                <th class="col-num">ID</th>
                 <th class="col-title">Titre</th>
                 <th class="col-category">Catégories</th>
                 <th class="col-content">Contenu de l'article</th>
@@ -34,7 +34,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun article disponible.</td>
             </tr>
         {% endfor %}
         </tbody>

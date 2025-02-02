@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Blog{% endblock %}
+{% block title %}Création d'un post - Blog{% endblock %}
 
 {% block body %}
-    <h1>Create new Blog</h1>
+    <h1>Création d'un post de blog</h1>
 
     {{ include('blog/_form.html.twig') }}
 
-    <a href="{{ path('app_blog_index') }}">back to list</a>
+    <a href="{{ path('app_blog_index') }}" class="action-link">Retour au blog</a>
 {% endblock %}

@@ -2,19 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Projet Ada Lovelace{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
     <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Menu</a>
+            <a class="navbar-brand" href="/article">Ada Lovelace</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     {% for route, label in {
-                        'app_blog_index': 'Blog',
                         'article_index': 'Articles',
-                        'category_index': 'Catégories'
+                        'category_index': 'Catégories',
+                        'app_blog_index': 'Blog'
                     } %}
                         <li class="nav-item {% if app.request.attributes.get('_route') == route %}active{% endif %}">
                             <a class="nav-link" href="{{ path(route) }}">{{ label }}</a>

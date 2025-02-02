@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search results{% endblock %}
+{% block title %}Résultats de recherche{% endblock %}
 
 {% block body %}
 {% include 'article/search.html.twig' %}
-    <h1>Search results for "{{ query }}"</h1>
+    <h1>Résultats de recherche pour "{{ query }}"</h1>
 
     {% if articles is not empty %}
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Content</th>
-                    <th>actions</th>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Contenu</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,16 +25,16 @@
                         <td>{{ article.category.name }}</td>
                         <td>{{ article.content }}</td>
                         <td>
-                            <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                            <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                            <a href="{{ path('article_show', {'id': article.id}) }}" class="action-link">Voir</a>
+                            <a href="{{ path('article_edit', {'id': article.id}) }}" class="action-link">Éditer</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     {% else %}
-        <p>No articles found for the search "{{ query }}".</p>
+        <p class="results-error">Aucun article ne correspond à la recherche "{{ query }}".</p>
     {% endif %}
 
-    <a href="{{ path('article_index') }}">Back to list</a>
+    <a href="{{ path('article_index') }}" class="action-link">Retour à l'index</a>
 {% endblock %}

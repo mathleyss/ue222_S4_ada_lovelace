@@ -2,9 +2,9 @@
     Le but est de permettre à l'utilisateur de chercher les articles dans la base
     de données selon le titre. #}
 <div class="formSearch">
-    <h3>Search for articles by title</h3>
+    <p>Faire une recherche d'article par titre</p>
     <form action="{{ path('article_search') }}" method="get">
-        <input type="text" name="query" placeholder="Type here ..." required>
-        <button type="submit">Search</button>
+        <input type="text" name="query" placeholder="Saisir ici..." required>
+        <button type="submit">Recherche</button>
     </form>
 </div>
