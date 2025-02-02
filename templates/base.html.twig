@@ -4,9 +4,27 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     </head>
     <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Menu</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% for route, label in {
+                        'blog': 'Blog',
+                        'article_index': 'Articles',
+                        'category_index': 'Catégories'
+                    } %}
+                        <li class="nav-item {% if app.request.attributes.get('_route') == route %}active{% endif %}">
+                            <a class="nav-link" href="{{ path(route) }}">{{ label }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
